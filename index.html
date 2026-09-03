@@ -746,6 +746,138 @@
       letter-spacing: 0.06em;
     }
 
+    /* ── CATEGORY FILTERS ──────────────────────────────────── */
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .filter-btn {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      padding: 7px 14px;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+
+    .filter-btn:hover {
+      color: var(--cream);
+      border-color: var(--faint);
+    }
+
+    .filter-btn.active {
+      color: #1B160E;
+      background: linear-gradient(135deg, var(--gold), var(--brass));
+      border-color: transparent;
+    }
+
+    .filter-btn:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+
+    .filter-label {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-top: 20px;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    /* ── DISCUSSION SECTION ─────────────────────────────────── */
+    .discussion-section {
+      background: var(--surface);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 64px 40px;
+    }
+
+    .discussion-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .discussion-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .discussion-head-lhs .label { display: block; margin-bottom: 8px; }
+
+    .discussion-head-lhs h2 {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(22px, 3.5vw, 30px);
+      line-height: 1.2;
+      color: var(--cream);
+    }
+
+    .discussion-note {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 200px;
+      text-align: right;
+      line-height: 1.4;
+    }
+
+    .discussion-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .discussion-item {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 0 20px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: baseline;
+    }
+
+    .discussion-item:first-child { padding-top: 0; }
+    .discussion-item:last-child  { border-bottom: none; padding-bottom: 0; }
+
+    .dq-num {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--brass);
+      font-variant-numeric: tabular-nums;
+      padding-top: 3px;
+    }
+
+    .dq-text {
+      font-family: var(--serif);
+      font-size: clamp(16px, 2.2vw, 19px);
+      line-height: 1.65;
+      color: var(--cream);
+    }
+
+    @media (max-width: 640px) {
+      .discussion-section { padding: 48px 20px; }
+      .discussion-note    { display: none; }
+    }
+
     /* ── RESPONSIVE ────────────────────────────────────────── */
     @media (max-width: 640px) {
       .hero-top          { padding: 0 20px 20px; flex-wrap: wrap; gap: 10px; }
@@ -795,7 +927,7 @@
 
     <div class="hero-rule-row">
       <hr />
-      <div class="hero-date-stamp">Begins <em>Sep 17, 2026</em> &nbsp;·&nbsp; 7&thinsp;pm – 9&thinsp;pm</div>
+      <div class="hero-date-stamp">Every Thursday &nbsp;·&nbsp; Next: <em>Sep 17, 2026</em> &nbsp;·&nbsp; 7&thinsp;pm – 9&thinsp;pm</div>
       <hr />
     </div>
   </header>
@@ -859,6 +991,55 @@
         </button>
         <span class="verse-counter" id="verse-counter" hidden></span>
       </div>
+
+      <span class="filter-label">Filter by theme</span>
+      <div class="filter-row" role="group" aria-label="Filter verses by theme">
+        <button class="filter-btn active" onclick="setFilter(this, null)">All</button>
+        <button class="filter-btn" onclick="setFilter(this, 'Leadership')">Leadership</button>
+        <button class="filter-btn" onclick="setFilter(this, 'Love')">Love</button>
+        <button class="filter-btn" onclick="setFilter(this, 'Legacy')">Legacy</button>
+        <button class="filter-btn" onclick="setFilter(this, 'Presence')">Presence</button>
+        <button class="filter-btn" onclick="setFilter(this, 'Wisdom')">Wisdom</button>
+        <button class="filter-btn" onclick="setFilter(this, 'Faithfulness')">Faithfulness</button>
+        <button class="filter-btn" onclick="setFilter(this, 'Discipline')">Discipline</button>
+        <button class="filter-btn" onclick="setFilter(this, 'Identity')">Identity</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DISCUSSION ── -->
+  <section class="discussion-section" aria-label="Group Discussion Questions">
+    <div class="discussion-inner">
+      <div class="discussion-head">
+        <div class="discussion-head-lhs">
+          <span class="label">For the Group</span>
+          <h2>Discussion Questions</h2>
+        </div>
+        <p class="discussion-note">Use these in your weekly meetings to go deeper.</p>
+      </div>
+
+      <div class="discussion-list">
+        <div class="discussion-item">
+          <span class="dq-num">01</span>
+          <p class="dq-text">What's one thing your father did well that you are intentionally passing on to your children — and one thing you are choosing to do differently?</p>
+        </div>
+        <div class="discussion-item">
+          <span class="dq-num">02</span>
+          <p class="dq-text">Where do you feel most inadequate as a father right now? What would actually help?</p>
+        </div>
+        <div class="discussion-item">
+          <span class="dq-num">03</span>
+          <p class="dq-text">What does it look like in your home this week to be the spiritual leader — not in a big dramatic way, but in the everyday?</p>
+        </div>
+        <div class="discussion-item">
+          <span class="dq-num">04</span>
+          <p class="dq-text">Who is a man you consider a model father? What specifically does he do that you want to learn from?</p>
+        </div>
+        <div class="discussion-item">
+          <span class="dq-num">05</span>
+          <p class="dq-text">If your children were asked what kind of father you are, what do you think they would say? What would you want them to say?</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -885,7 +1066,7 @@
           <table class="detail-table">
             <tr>
               <td>Date</td>
-              <td>Thursday, Sep 17, 2026<small>Weekly meetings begin this night</small></td>
+              <td>Thursday, Sep 17, 2026<small>Every Thursday · 7 – 9 pm</small></td>
             </tr>
             <tr>
               <td>Time</td>
@@ -946,7 +1127,7 @@
   <!-- ── FOOTER ── -->
   <footer>
     <div class="footer-name">A <strong>Life Church Spring Hill</strong> Group</div>
-    <div class="footer-detail">The Fathers Charge &nbsp;·&nbsp; Sep 17, 2026 &nbsp;·&nbsp; Spring Hill, FL 34609</div>
+    <div class="footer-detail">The Fathers Charge &nbsp;·&nbsp; Every Thursday starting Sep 17, 2026 &nbsp;·&nbsp; Spring Hill, FL 34609</div>
   </footer>
 
   <script>
@@ -966,15 +1147,67 @@
         const textW   = el.scrollWidth;
         if (textW === 0) return;
         const scale = W / textW;
-        el.style.fontSize = (natural * scale * 0.985) + 'px'; // 0.985 prevents overflow
+        el.style.fontSize = (natural * scale * 0.78) + 'px'; // 0.78 = ~22% smaller than full-fill
       });
     }
 
     fitWordmark();
     window.addEventListener('resize', fitWordmark);
 
-    // ── Countdown ────────────────────────────────────────────
-    const TARGET = new Date('2026-09-17T19:00:00-04:00').getTime();
+    // ── Dynamic Countdown — targets the next Thursday 7 pm ET on or after the series start ───
+    // First meeting: Thu Sep 17, 2026. Sep 3 and Sep 10 are skipped (no meetings).
+    const SERIES_START = new Date('2026-09-17T19:00:00-04:00');
+
+    function nextThursdayAt7pmET() {
+      const now = new Date();
+      const nyTZ = 'America/New_York';
+      for (let d = 0; d <= 7; d++) {
+        const probe = new Date(now.getTime() + d * 864e5);
+        const wd = new Intl.DateTimeFormat('en-US', {weekday:'short', timeZone:nyTZ}).format(probe);
+        if (wd !== 'Thu') continue;
+        // YYYY-MM-DD in ET (en-CA gives ISO format)
+        const ymd = new Intl.DateTimeFormat('en-CA', {timeZone:nyTZ}).format(probe);
+        // Find the ET offset at noon UTC on this date
+        const noon = new Date(ymd + 'T12:00:00Z');
+        const parts = new Intl.DateTimeFormat('en-US', {
+          timeZone:nyTZ, year:'numeric', month:'2-digit', day:'2-digit',
+          hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false
+        }).formatToParts(noon);
+        const get = t => +parts.find(p => p.type === t).value;
+        const etAsIfUTC = Date.UTC(get('year'), get('month')-1, get('day'), get('hour'), get('minute'), get('second'));
+        const etOffset = etAsIfUTC - noon.getTime(); // e.g. -14400000 for EDT (UTC-4)
+        // 7 pm ET = midnight UTC of that date + 19 h, minus the offset
+        const midnightZ = new Date(ymd + 'T00:00:00Z').getTime();
+        const target = new Date(midnightZ + 19 * 3600000 - etOffset);
+        // Only return if it's in the future AND on or after the series start date
+        if (target > now && target >= SERIES_START) return target;
+      }
+      return null;
+    }
+
+    const NEXT_MEETING = nextThursdayAt7pmET();
+    const TARGET = NEXT_MEETING
+      ? NEXT_MEETING.getTime()
+      : new Date('2026-09-17T19:00:00-04:00').getTime();
+
+    // Update UI to show the dynamic date
+    (function updateDateLabels() {
+      if (!NEXT_MEETING) return;
+      const nyTZ = 'America/New_York';
+      const longDate = new Intl.DateTimeFormat('en-US', {
+        month:'long', day:'numeric', year:'numeric', timeZone:nyTZ
+      }).format(NEXT_MEETING);
+      const shortDate = new Intl.DateTimeFormat('en-US', {
+        month:'short', day:'numeric', year:'numeric', timeZone:nyTZ
+      }).format(NEXT_MEETING);
+      const beginsEl = document.querySelector('.begins');
+      if (beginsEl) beginsEl.textContent = longDate;
+      const cdLabelEl = document.querySelector('.countdown-lhs .label');
+      if (cdLabelEl) cdLabelEl.textContent = 'Next Meeting In';
+      const heroDateEl = document.querySelector('.hero-date-stamp');
+      if (heroDateEl) heroDateEl.innerHTML =
+        'Every Thursday &nbsp;·&nbsp; Next: <em>' + shortDate + '</em> &nbsp;·&nbsp; 7&thinsp;pm – 9&thinsp;pm';
+    })();
 
     function pad(n) { return String(n).padStart(2, '0'); }
 
@@ -1000,82 +1233,182 @@
       {
         text: "As a father has compassion on his children, so the LORD has compassion on those who fear him.",
         ref: "Psalm 103:13",
+        tags: ["Love", "Presence"],
         question: "How does God's compassion for you shape the way you show compassion to your children?"
       },
       {
         text: "Start children off on the way they should go, and even when they are old they will not turn from it.",
         ref: "Proverbs 22:6",
+        tags: ["Legacy", "Wisdom", "Discipline"],
         question: "What are you intentionally planting in your children right now that you hope they carry into adulthood?"
       },
       {
         text: "Fathers, do not exasperate your children; instead, bring them up in the training and instruction of the Lord.",
         ref: "Ephesians 6:4",
+        tags: ["Discipline", "Leadership"],
         question: "What does training in the Lord look like in the daily rhythms of your home — without provoking?"
       },
       {
         text: "But as for me and my household, we will serve the LORD.",
         ref: "Joshua 24:15",
+        tags: ["Leadership", "Faithfulness"],
         question: "What does it practically mean for your household to serve the Lord in this season of life?"
       },
       {
         text: "Children are a heritage from the LORD, offspring a reward from him.",
         ref: "Psalm 127:3",
+        tags: ["Love", "Identity"],
         question: "How does seeing your children as God's gift — not your achievement — change the way you lead them?"
       },
       {
         text: "The righteous lead blameless lives; blessed are their children after them.",
         ref: "Proverbs 20:7",
+        tags: ["Faithfulness", "Legacy"],
         question: "What does a blameless life look like for a man in your exact stage of fatherhood?"
       },
       {
         text: "These commandments that I give you today are to be on your hearts. Impress them on your children. Talk about them when you sit at home and when you walk along the road, when you lie down and when you get up.",
         ref: "Deuteronomy 6:6–7",
+        tags: ["Faithfulness", "Presence", "Wisdom"],
         question: "Which everyday moments in your week are already open doors for passing truth to your children?"
       },
       {
         text: "Fathers, do not embitter your children, or they will become discouraged.",
         ref: "Colossians 3:21",
+        tags: ["Discipline", "Love"],
         question: "Is there anything in your fathering — words, tone, expectations — that might be quietly discouraging your children?"
       },
       {
         text: "Children's children are a crown to the aged, and parents are the pride of their children.",
         ref: "Proverbs 17:6",
+        tags: ["Legacy", "Love"],
         question: "What legacy are you building today that your children will one day be genuinely proud of?"
       },
       {
         text: "He will turn the hearts of the parents to their children, and the hearts of the children to their parents.",
         ref: "Malachi 4:6",
+        tags: ["Love", "Presence"],
         question: "Where do you feel distance between your heart and your child's heart? What is one thing that might close that gap?"
       },
       {
         text: "I have no greater joy than to hear that my children are walking in the truth.",
         ref: "3 John 1:4",
+        tags: ["Legacy", "Faithfulness"],
         question: "What does raising children who walk in truth — not just follow rules — actually look like in your home?"
       },
       {
         text: "But while he was still a long way off, his father saw him and was filled with compassion for him; he ran to his son, threw his arms around him and kissed him.",
         ref: "Luke 15:20",
+        tags: ["Love", "Presence"],
         question: "What would it look like to be a father who runs toward his children in their worst moments, not away?"
       },
       {
         text: "Listen, my sons, to a father's instruction; pay attention and gain understanding. I give you sound learning, so do not forsake my teaching.",
         ref: "Proverbs 4:1–2",
+        tags: ["Wisdom", "Leadership"],
         question: "What wisdom are you actively passing down — and what did no one pass down to you that you are still learning now?"
       },
       {
         text: "The living, the living — they praise you, as I am doing today; parents tell their children about your faithfulness.",
         ref: "Isaiah 38:19",
+        tags: ["Faithfulness", "Legacy"],
         question: "How are you telling your children the story of God's faithfulness in your own life — not just the clean version?"
       },
       {
         text: "The Spirit you received does not make you slaves, so that you live in fear again; rather, the Spirit you received brought about your adoption to sonship. And by him we cry, 'Abba, Father.'",
         ref: "Romans 8:15",
+        tags: ["Identity", "Love"],
         question: "How does knowing God as your Father change the kind of father you want to be for your children?"
+      },
+      {
+        text: "For I have chosen him, so that he will direct his children and his household after him to keep the way of the LORD by doing what is right and just.",
+        ref: "Genesis 18:19",
+        tags: ["Leadership", "Faithfulness"],
+        question: "What does 'directing your household' look like practically in your home — not as a position, but as a daily practice?"
+      },
+      {
+        text: "A good man leaves an inheritance to his children's children, but a sinner's wealth is laid up for the righteous.",
+        ref: "Proverbs 13:22",
+        tags: ["Legacy", "Faithfulness"],
+        question: "What kind of inheritance — beyond money — are you intentionally building for your children and grandchildren?"
+      },
+      {
+        text: "Early in the morning he would sacrifice a burnt offering for each of them, thinking, 'Perhaps my children have sinned and cursed God in their hearts.' This was Job's regular custom.",
+        ref: "Job 1:5",
+        tags: ["Faithfulness", "Presence"],
+        question: "What is your regular practice of interceding for your children — and does it feel like a burden or a privilege?"
+      },
+      {
+        text: "We will not hide them from their children; we will tell the next generation the praiseworthy deeds of the LORD, his power, and the wonders he has done.",
+        ref: "Psalm 78:4",
+        tags: ["Legacy", "Faithfulness"],
+        question: "What stories of God's faithfulness from your own life do your children know by heart — the honest, unpolished version?"
+      },
+      {
+        text: "For you know that we dealt with each of you as a father deals with his own children, encouraging, comforting and urging you to live lives worthy of God.",
+        ref: "1 Thessalonians 2:11–12",
+        tags: ["Leadership", "Love"],
+        question: "Are you more naturally an encourager, a comforter, or a challenger of your children — and which do they need most from you right now?"
+      },
+      {
+        text: "In everything set them an example by doing what is good. In your teaching show integrity, seriousness and soundness of speech.",
+        ref: "Titus 2:7",
+        tags: ["Legacy", "Identity"],
+        question: "What is your life demonstrating to your children right now about what a good man actually looks like?"
+      },
+      {
+        text: "Husbands, love your wives, just as Christ loved the church and gave himself up for her.",
+        ref: "Ephesians 5:25",
+        tags: ["Love", "Leadership"],
+        question: "How does the way you love their mother shape your children's understanding of what love, sacrifice, and covenant mean?"
+      },
+      {
+        text: "Unless the LORD builds the house, the builders labor in vain.",
+        ref: "Psalm 127:1",
+        tags: ["Faithfulness", "Identity"],
+        question: "Where are you trying to build your family in your own strength — and where are you actively trusting God to do it?"
+      },
+      {
+        text: "If you, then, though you are evil, know how to give good gifts to your children, how much more will your Father in heaven give good gifts to those who ask him!",
+        ref: "Matthew 7:11",
+        tags: ["Love", "Identity"],
+        question: "What is the best gift you can give your children right now — and is it actually what you're giving them most?"
+      },
+      {
+        text: "Do not be afraid of them. Remember the Lord, who is great and awesome, and fight for your families, your sons and your daughters, your wives and your homes.",
+        ref: "Nehemiah 4:14",
+        tags: ["Leadership", "Faithfulness"],
+        question: "What is the battle you are currently fighting for your family — and are you fighting it with God or largely on your own?"
+      },
+      {
+        text: "Tell it to your children, and let your children tell it to their children, and their children to the next generation.",
+        ref: "Joel 1:3",
+        tags: ["Legacy", "Wisdom"],
+        question: "What truth about God are you making sure your children can clearly articulate — not just follow as a rule, but actually name?"
+      },
+      {
+        text: "He has shown you, O mortal, what is good. And what does the LORD require of you? To act justly and to love mercy and to walk humbly with your God.",
+        ref: "Micah 6:8",
+        tags: ["Wisdom", "Identity"],
+        question: "Of justice, mercy, and humility — which one do you most need to model more clearly for your children right now, and why?"
+      },
+      {
+        text: "For our fathers disciplined us for a short time as seemed best to them, but God disciplines us for our good, so that we may share in his holiness.",
+        ref: "Hebrews 12:10",
+        tags: ["Discipline", "Identity"],
+        question: "How has being disciplined by God shaped the way you think about correcting and shaping your own children?"
+      },
+      {
+        text: "A father to the fatherless, a defender of widows, is God in his holy dwelling. God sets the lonely in families.",
+        ref: "Psalm 68:5–6",
+        tags: ["Identity", "Love"],
+        question: "How does knowing that God himself fathers the fatherless change the weight and significance of the role he's given you?"
       }
     ];
 
-    let remaining = [];
-    let drawCount = 0;
+    let activeFilter = null;  // null = All
+    let remaining    = [];
+    let drawCount    = 0;
 
     function shuffle(arr) {
       const a = [...arr];
@@ -1086,32 +1419,63 @@
       return a;
     }
 
+    function filteredPool() {
+      if (!activeFilter) return VERSES;
+      return VERSES.filter(v => v.tags.includes(activeFilter));
+    }
+
+    function setFilter(btn, category) {
+      activeFilter = category;
+      remaining    = [];   // reset deck on filter change
+      drawCount    = 0;
+
+      // update button states
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // reset counter label
+      const counter = document.getElementById('verse-counter');
+      counter.hidden = true;
+      document.getElementById('btn-label').textContent = 'Draw a Verse';
+
+      // hide current verse, show idle
+      const content = document.getElementById('verse-content');
+      const idle    = document.getElementById('verse-idle');
+      content.classList.remove('is-visible');
+      content.style.display = 'none';
+      idle.style.display = '';
+    }
+
     function drawVerse() {
-      if (remaining.length === 0) remaining = shuffle(VERSES);
+      const pool = filteredPool();
+      if (pool.length === 0) return;
+
+      if (remaining.length === 0) remaining = shuffle(pool);
       const verse = remaining.pop();
       drawCount++;
 
-      // swap idle → content
       const idle    = document.getElementById('verse-idle');
       const content = document.getElementById('verse-content');
 
       idle.style.display = 'none';
       content.classList.remove('is-visible');
-      // force reflow so animation re-triggers
-      void content.offsetWidth;
+      void content.offsetWidth; // reflow so animation re-fires
 
       document.getElementById('verse-text').textContent     = verse.text;
       document.getElementById('verse-ref').textContent      = verse.ref;
       document.getElementById('verse-question').textContent = verse.question;
 
+      // update the category tag badge
+      const tag = verse.tags[0];
+      document.getElementById('verse-tag').textContent = tag;
+
       content.style.display = 'block';
       content.classList.add('is-visible');
 
-      // update button + counter
       document.getElementById('btn-label').textContent = 'Draw Another';
       const counter = document.getElementById('verse-counter');
       counter.hidden = false;
-      counter.textContent = drawCount + ' of ' + VERSES.length + ' drawn';
+      counter.textContent = drawCount + ' of ' + pool.length + (activeFilter ? ' in ' + activeFilter : '') + ' drawn';
     }
   </script>
 </body>
