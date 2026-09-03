@@ -1587,7 +1587,7 @@
     <div class="countdown-inner">
       <div class="countdown-lhs">
         <span class="label">Begins In</span>
-        <span class="begins">September 17</span>
+        <span class="begins" id="cd-begins">September 17</span>
       </div>
       <div class="countdown-digits" role="timer" aria-label="Countdown to event">
         <div class="cd-unit"><div class="cd-num" id="cd-days">--</div><div class="cd-label">Days</div></div>
@@ -1784,7 +1784,7 @@
           <table class="detail-table">
             <tr>
               <td>Date</td>
-              <td>Thursday, Sep 17, 2026<small>Every Thursday · 7 – 9 pm</small></td>
+              <td id="detail-next-date">Thursday, Sep 17, 2026<small>Every Thursday · 7 – 9 pm</small></td>
             </tr>
             <tr>
               <td>Time</td>
@@ -1977,6 +1977,13 @@
       const heroDateEl = document.querySelector('.hero-date-stamp');
       if (heroDateEl) heroDateEl.innerHTML =
         'Every Thursday &nbsp;·&nbsp; Next: <em>' + shortDate + '</em> &nbsp;·&nbsp; 7&thinsp;pm – 9&thinsp;pm';
+      // "Begins In" label in countdown
+      const cdBeginsEl = document.getElementById('cd-begins');
+      if (cdBeginsEl) cdBeginsEl.textContent = longDate;
+      // When & Where detail table
+      const detailDateEl = document.getElementById('detail-next-date');
+      if (detailDateEl) detailDateEl.innerHTML =
+        'Thursday, ' + shortDate + '<small>Every Thursday · 7 – 9 pm</small>';
     })();
 
     function pad(n) { return String(n).padStart(2, '0'); }
