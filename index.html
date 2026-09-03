@@ -24,7 +24,6 @@
       --sans:  'IBM Plex Sans', system-ui, -apple-system, sans-serif;
     }
 
-    /* system dark is the default (this is a deliberately dark-first design) */
     @media (prefers-color-scheme: light) {
       :root:not([data-theme="dark"]) {
         --bg:       #F5F0E6;
@@ -123,7 +122,6 @@
       opacity: 0.85;
     }
 
-    /* fluid-fill headline */
     .hero-wordmark {
       padding: 28px 40px 0;
       line-height: 0.88;
@@ -148,7 +146,6 @@
       line-height: 0.88;
       color: var(--gold);
       white-space: nowrap;
-      /* scale to fill container */
       width: 100%;
     }
 
@@ -266,182 +263,149 @@
       align-self: flex-end;
     }
 
-    /* ── MAIN CONTENT ──────────────────────────────────────── */
-    .content-area {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 0 40px;
+    /* ── COMMITMENT CARD ───────────────────────────────────── */
+    .commit-section {
+      border-bottom: 1px solid var(--rule);
+      padding: 36px 40px;
+      background: var(--bg);
     }
 
-    /* ── COMBINED GROUP SECTION ─────────────────────────────── */
-    .group-section {
-      padding: 60px 0;
+    .commit-inner {
+      max-width: 680px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      flex-wrap: wrap;
     }
 
-    .group-section-head {
-      margin-bottom: 36px;
-    }
+    .commit-lhs .label { display: block; margin-bottom: 8px; }
 
-    .group-section-head .label {
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    .group-section-head h2 {
+    .commit-headline {
       font-family: var(--serif);
       font-weight: 700;
-      font-size: clamp(26px, 4vw, 36px);
-      line-height: 1.15;
-      text-wrap: balance;
+      font-size: clamp(18px, 2.8vw, 24px);
       color: var(--cream);
+      line-height: 1.25;
     }
 
-    /* description sits full-width up top */
-    .group-desc {
-      border-left: 3px solid var(--brass);
-      padding: 6px 0 6px 24px;
-      margin-bottom: 40px;
-    }
-
-    .group-desc p {
+    .commit-sub {
       font-family: var(--serif);
-      font-size: clamp(16px, 2vw, 19px);
-      line-height: 1.75;
-      color: var(--cream);
-      text-wrap: pretty;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 4px;
     }
 
-    /* two-col body below */
-    .group-body {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: start;
+    .commit-rhs {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+      flex-shrink: 0;
     }
 
-    /* sub-headings inside columns */
-    .group-col-label {
-      font-size: 10px;
+    .btn-commit {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--brass) 100%);
+      color: #1B160E;
+      font-family: var(--sans);
       font-weight: 600;
-      letter-spacing: 0.20em;
+      font-size: 13px;
+      letter-spacing: 0.10em;
       text-transform: uppercase;
-      color: var(--brass);
-      margin-bottom: 14px;
-      display: block;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      box-shadow: 0 4px 18px rgba(184,146,46,0.30);
+      transition: transform 0.12s, box-shadow 0.12s, opacity 0.2s;
     }
 
-    /* ── DETAIL TABLE ──────────────────────────────────────── */
-    .detail-table {
-      width: 100%;
-      border-collapse: collapse;
+    .btn-commit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(184,146,46,0.40); }
+    .btn-commit:active { transform: none; }
+    .btn-commit:disabled { opacity: 0.5; cursor: default; transform: none; }
+    .btn-commit:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    .commit-count-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .detail-table tr {
-      border-bottom: 1px solid var(--rule);
+    .commit-avatars {
+      display: flex;
+      gap: -4px;
     }
 
-    .detail-table tr:last-child {
-      border-bottom: none;
+    .commit-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--brass);
+      opacity: 0.7;
+      display: inline-block;
+      margin-right: 3px;
     }
 
-    .detail-table td {
-      padding: 16px 0;
-      vertical-align: top;
+    .commit-tally {
+      font-family: var(--serif);
+      font-size: 14px;
+      color: var(--muted);
+      font-style: italic;
     }
 
-    .detail-table td:first-child {
-      width: 130px;
+    .commit-tally strong {
+      font-style: normal;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .commit-confirmed {
+      font-family: var(--sans);
       font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
+      letter-spacing: 0.10em;
       color: var(--brass);
-      padding-right: 24px;
+      display: none;
     }
 
-    .detail-table td:last-child {
-      font-family: var(--serif);
-      font-size: 18px;
-      font-weight: 500;
-      color: var(--cream);
-      line-height: 1.4;
-    }
+    .commit-confirmed.visible { display: block; }
 
-    .detail-table td:last-child small {
-      display: block;
-      font-family: var(--sans);
-      font-size: 13px;
-      font-weight: 400;
-      color: var(--muted);
-      margin-top: 3px;
-      font-style: normal;
-    }
-
-    /* ── PURPOSE PILLS ─────────────────────────────────────── */
-    .purpose-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 4px;
-    }
-
-    .purpose-pill {
-      font-family: var(--serif);
-      font-size: 16px;
-      font-style: italic;
-      color: var(--brass);
-      border: 1px solid var(--rule);
-      border-radius: 2px;
-      padding: 8px 18px;
-      background: rgba(184,146,46,0.06);
-    }
-
-    /* ── DESCRIPTION PULL QUOTE ────────────────────────────── */
-    .pull-quote {
+    /* ── VERSE OF THE WEEK ─────────────────────────────────── */
+    .votw-ribbon {
+      background: linear-gradient(90deg, rgba(184,146,46,0.10), transparent);
       border-left: 3px solid var(--brass);
-      padding: 6px 0 6px 28px;
-      margin-top: 4px;
+      border-radius: 0 2px 2px 0;
+      padding: 14px 20px;
+      margin-bottom: 24px;
     }
 
-    .pull-quote p {
-      font-family: var(--serif);
-      font-size: clamp(17px, 2.2vw, 21px);
-      line-height: 1.75;
-      color: var(--cream);
-      text-wrap: pretty;
-    }
-
-    /* ── INFO CHIPS ────────────────────────────────────────── */
-    .info-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 4px;
-    }
-
-    .chip {
-      background: var(--surface2);
-      border: 1px solid var(--rule);
-      border-radius: 2px;
-      padding: 12px 20px;
-    }
-
-    .chip-label {
+    .votw-label {
       font-family: var(--sans);
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 600;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--faint);
-      margin-bottom: 5px;
+      color: var(--brass);
+      margin-bottom: 6px;
     }
 
-    .chip-val {
+    .votw-text {
       font-family: var(--serif);
-      font-size: 17px;
-      font-weight: 600;
+      font-size: 15px;
+      font-style: italic;
       color: var(--cream);
-      line-height: 1.3;
+      line-height: 1.6;
+    }
+
+    .votw-ref {
+      font-family: var(--sans);
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
     }
 
     /* ── VERSE DRAWER ──────────────────────────────────────── */
@@ -476,7 +440,6 @@
       margin-top: 6px;
     }
 
-    /* the book card */
     .verse-book {
       background: linear-gradient(160deg, var(--surface) 0%, var(--surface2) 100%);
       border: 1px solid var(--rule);
@@ -489,7 +452,6 @@
       min-height: 260px;
     }
 
-    /* decorative corner ribbon */
     .verse-book::after {
       content: '';
       position: absolute;
@@ -500,7 +462,6 @@
       opacity: 0.18;
     }
 
-    /* idle state — shown before first draw */
     .verse-idle {
       display: flex;
       flex-direction: column;
@@ -511,11 +472,7 @@
       gap: 10px;
     }
 
-    .verse-idle .idle-icon {
-      font-size: 36px;
-      line-height: 1;
-      opacity: 0.5;
-    }
+    .verse-idle .idle-icon { font-size: 36px; line-height: 1; opacity: 0.5; }
 
     .verse-idle .idle-text {
       font-family: var(--serif);
@@ -526,10 +483,7 @@
       line-height: 1.5;
     }
 
-    /* verse content */
-    .verse-content {
-      display: none;
-    }
+    .verse-content { display: none; }
 
     .verse-content.is-visible {
       display: block;
@@ -619,6 +573,53 @@
       line-height: 1.6;
     }
 
+    /* Reflection Journal */
+    .verse-journal {
+      margin-top: 20px;
+    }
+
+    .verse-journal-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .verse-journal textarea {
+      width: 100%;
+      min-height: 80px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      color: var(--cream);
+      font-family: var(--serif);
+      font-size: 14px;
+      line-height: 1.65;
+      padding: 12px 14px;
+      resize: vertical;
+      transition: border-color 0.15s;
+    }
+
+    .verse-journal textarea:focus {
+      outline: none;
+      border-color: var(--brass);
+    }
+
+    .verse-journal textarea::placeholder { color: var(--faint); }
+
+    .journal-saved-note {
+      font-family: var(--sans);
+      font-size: 10px;
+      color: var(--faint);
+      letter-spacing: 0.06em;
+      margin-top: 5px;
+      height: 14px;
+      transition: opacity 0.3s;
+    }
+
     /* draw button row */
     .verse-actions {
       display: flex;
@@ -653,13 +654,31 @@
     }
 
     .btn-draw:active { transform: translateY(0); }
+    .btn-draw:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .btn-draw .btn-icon { font-size: 15px; }
 
-    .btn-draw:focus-visible {
-      outline: 2px solid var(--gold);
-      outline-offset: 3px;
+    .btn-share {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      color: var(--muted);
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      padding: 10px 16px;
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+      display: none;
     }
 
-    .btn-draw .btn-icon { font-size: 15px; }
+    .btn-share.visible { display: inline-flex; }
+    .btn-share:hover { color: var(--cream); border-color: var(--faint); }
+    .btn-share:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
     .verse-counter {
       font-family: var(--sans);
@@ -668,10 +687,744 @@
       letter-spacing: 0.08em;
     }
 
+    /* ── FILTER BUTTONS ────────────────────────────────────── */
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .filter-btn {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      padding: 7px 14px;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+
+    .filter-btn:hover { color: var(--cream); border-color: var(--faint); }
+
+    .filter-btn.active {
+      color: #1B160E;
+      background: linear-gradient(135deg, var(--gold), var(--brass));
+      border-color: transparent;
+    }
+
+    .filter-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+    .filter-label {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-top: 20px;
+      margin-bottom: 8px;
+      display: block;
+    }
+
     @media (max-width: 640px) {
       .verse-section { padding: 48px 20px; }
       .verse-book    { padding: 28px 24px 28px; }
     }
+
+    /* ── WEEKLY CHALLENGE ──────────────────────────────────── */
+    .challenge-section {
+      padding: 56px 40px;
+      background: var(--surface);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .challenge-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .challenge-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .challenge-head .label { display: block; margin-bottom: 8px; }
+
+    .challenge-head h2 {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(20px, 3vw, 26px);
+      color: var(--cream);
+    }
+
+    .challenge-week-badge {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      padding: 5px 10px;
+      white-space: nowrap;
+      align-self: flex-start;
+      margin-top: 4px;
+    }
+
+    .challenge-card {
+      background: var(--surface2);
+      border: 1px solid var(--rule);
+      border-left: 5px solid var(--gold);
+      border-radius: 2px;
+      padding: 32px 36px;
+    }
+
+    .challenge-action-name {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .challenge-desc {
+      font-family: var(--serif);
+      font-size: clamp(17px, 2.4vw, 21px);
+      line-height: 1.7;
+      color: var(--cream);
+    }
+
+    @media (max-width: 640px) {
+      .challenge-section { padding: 44px 20px; }
+      .challenge-card { padding: 24px 20px; }
+    }
+
+    /* ── DISCUSSION SECTION ─────────────────────────────────── */
+    .discussion-section {
+      background: var(--bg);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 64px 40px;
+    }
+
+    .discussion-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .discussion-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .discussion-head-lhs .label { display: block; margin-bottom: 8px; }
+
+    .discussion-head-lhs h2 {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(22px, 3.5vw, 30px);
+      line-height: 1.2;
+      color: var(--cream);
+    }
+
+    .discussion-note {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 200px;
+      text-align: right;
+      line-height: 1.4;
+    }
+
+    .discussion-list { display: flex; flex-direction: column; gap: 0; }
+
+    .discussion-item {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 0 20px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: baseline;
+    }
+
+    .discussion-item:first-child { padding-top: 0; }
+    .discussion-item:last-child  { border-bottom: none; padding-bottom: 0; }
+
+    .dq-num {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--brass);
+      font-variant-numeric: tabular-nums;
+      padding-top: 3px;
+    }
+
+    .dq-text {
+      font-family: var(--serif);
+      font-size: clamp(16px, 2.2vw, 19px);
+      line-height: 1.65;
+      color: var(--cream);
+    }
+
+    @media (max-width: 640px) {
+      .discussion-section { padding: 48px 20px; }
+      .discussion-note    { display: none; }
+    }
+
+    /* ── ICEBREAKER SPINNER ─────────────────────────────────── */
+    .icebreaker-section {
+      padding: 56px 40px;
+      background: var(--surface);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .icebreaker-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .icebreaker-head { margin-bottom: 28px; }
+    .icebreaker-head .label { display: block; margin-bottom: 8px; }
+
+    .icebreaker-head h2 {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(20px, 3vw, 26px);
+      color: var(--cream);
+    }
+
+    .icebreaker-stage {
+      background: var(--surface2);
+      border: 1px solid var(--rule);
+      border-radius: 3px;
+      padding: 40px 36px;
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .icebreaker-stage::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 50% 0%, rgba(184,146,46,0.06) 0%, transparent 70%);
+    }
+
+    #ib-idle {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 18px;
+      color: var(--faint);
+    }
+
+    #ib-text {
+      font-family: var(--serif);
+      font-size: clamp(17px, 2.4vw, 22px);
+      line-height: 1.6;
+      color: var(--cream);
+      max-width: 520px;
+      display: none;
+    }
+
+    #ib-text.spinning { color: var(--faint); transition: none; }
+
+    #ib-text.landed {
+      color: var(--cream);
+      animation: ibLand 0.4s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    @keyframes ibLand {
+      from { opacity: 0; transform: scale(0.96); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .icebreaker-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 22px;
+      flex-wrap: wrap;
+    }
+
+    .btn-spin {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--gold), var(--brass));
+      color: #1B160E;
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      box-shadow: 0 4px 18px rgba(184,146,46,0.30);
+      transition: transform 0.12s, box-shadow 0.12s, opacity 0.2s;
+    }
+
+    .btn-spin:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(184,146,46,0.40); }
+    .btn-spin:disabled { opacity: 0.5; cursor: wait; transform: none; }
+    .btn-spin:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    .ib-hint {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--faint);
+    }
+
+    @media (max-width: 640px) {
+      .icebreaker-section { padding: 44px 20px; }
+      .icebreaker-stage { padding: 28px 20px; }
+    }
+
+    /* ── MAIN CONTENT ──────────────────────────────────────── */
+    .content-area {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .group-section { padding: 60px 0; }
+
+    .group-section-head { margin-bottom: 36px; }
+    .group-section-head .label { display: block; margin-bottom: 8px; }
+
+    .group-section-head h2 {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(26px, 4vw, 36px);
+      line-height: 1.15;
+      text-wrap: balance;
+      color: var(--cream);
+    }
+
+    .group-desc {
+      border-left: 3px solid var(--brass);
+      padding: 6px 0 6px 24px;
+      margin-bottom: 40px;
+    }
+
+    .group-desc p {
+      font-family: var(--serif);
+      font-size: clamp(16px, 2vw, 19px);
+      line-height: 1.75;
+      color: var(--cream);
+      text-wrap: pretty;
+    }
+
+    .group-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .group-col-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    /* ── DETAIL TABLE ──────────────────────────────────────── */
+    .detail-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .detail-table tr { border-bottom: 1px solid var(--rule); }
+    .detail-table tr:last-child { border-bottom: none; }
+
+    .detail-table td {
+      padding: 16px 0;
+      vertical-align: top;
+    }
+
+    .detail-table td:first-child {
+      width: 130px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brass);
+      padding-right: 24px;
+    }
+
+    .detail-table td:last-child {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--cream);
+      line-height: 1.4;
+    }
+
+    .detail-table td:last-child small {
+      display: block;
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--muted);
+      margin-top: 3px;
+      font-style: normal;
+    }
+
+    /* ── PURPOSE PILLS ─────────────────────────────────────── */
+    .purpose-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .purpose-pill {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-style: italic;
+      color: var(--brass);
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      padding: 8px 18px;
+      background: rgba(184,146,46,0.06);
+    }
+
+    .info-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .chip {
+      background: var(--surface2);
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      padding: 12px 20px;
+    }
+
+    .chip-label {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 5px;
+    }
+
+    .chip-val {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--cream);
+      line-height: 1.3;
+    }
+
+    /* ── PRAYER WALL ───────────────────────────────────────── */
+    .prayer-section {
+      background: var(--surface);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 64px 40px;
+    }
+
+    .prayer-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .prayer-head { margin-bottom: 28px; }
+    .prayer-head .label { display: block; margin-bottom: 8px; }
+
+    .prayer-head h2 {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(20px, 3vw, 26px);
+      color: var(--cream);
+    }
+
+    .prayer-head p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    .prayer-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 36px;
+    }
+
+    .prayer-form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .prayer-field {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      color: var(--cream);
+      font-family: var(--serif);
+      font-size: 15px;
+      padding: 12px 14px;
+      transition: border-color 0.15s;
+    }
+
+    .prayer-field:focus { outline: none; border-color: var(--brass); }
+    .prayer-field::placeholder { color: var(--faint); }
+
+    textarea.prayer-field {
+      min-height: 80px;
+      resize: vertical;
+      line-height: 1.55;
+    }
+
+    .btn-pray {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--gold), var(--brass));
+      color: #1B160E;
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      align-self: flex-start;
+      box-shadow: 0 4px 18px rgba(184,146,46,0.30);
+      transition: transform 0.12s, box-shadow 0.12s, opacity 0.2s;
+    }
+
+    .btn-pray:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(184,146,46,0.40); }
+    .btn-pray:active { transform: none; }
+    .btn-pray:disabled { opacity: 0.5; cursor: default; transform: none; }
+    .btn-pray:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    .prayer-wall-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .prayer-card {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .prayer-card:first-child { padding-top: 0; border-top: 1px solid var(--rule); }
+    .prayer-card:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .prayer-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .prayer-name {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--brass);
+    }
+
+    .prayer-time {
+      font-family: var(--sans);
+      font-size: 10px;
+      color: var(--faint);
+      letter-spacing: 0.06em;
+    }
+
+    .prayer-text {
+      font-family: var(--serif);
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--cream);
+    }
+
+    .prayer-empty {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 16px;
+      color: var(--faint);
+      text-align: center;
+      padding: 32px 0;
+    }
+
+    .prayer-loading {
+      font-family: var(--sans);
+      font-size: 11px;
+      color: var(--faint);
+      letter-spacing: 0.08em;
+      padding: 24px 0;
+      text-align: center;
+    }
+
+    .prayer-offline {
+      background: var(--surface2);
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .prayer-offline p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 15px;
+      color: var(--faint);
+    }
+
+    @media (max-width: 640px) {
+      .prayer-section { padding: 48px 20px; }
+      .prayer-form-row { grid-template-columns: 1fr; }
+    }
+
+    /* ── QUESTION BOX ──────────────────────────────────────── */
+    .question-section {
+      background: var(--bg);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 56px 40px;
+    }
+
+    .question-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .question-head { margin-bottom: 28px; }
+    .question-head .label { display: block; margin-bottom: 8px; }
+
+    .question-head h2 {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(20px, 3vw, 26px);
+      color: var(--cream);
+    }
+
+    .question-head p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    .question-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .question-field {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      color: var(--cream);
+      font-family: var(--serif);
+      font-size: 15px;
+      padding: 14px 16px;
+      min-height: 100px;
+      resize: vertical;
+      line-height: 1.6;
+      transition: border-color 0.15s;
+    }
+
+    .question-field:focus { outline: none; border-color: var(--brass); }
+    .question-field::placeholder { color: var(--faint); }
+
+    .btn-question {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--gold);
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      padding: 12px 28px;
+      border: 1px solid var(--brass);
+      border-radius: 2px;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .btn-question:hover {
+      background: rgba(184,146,46,0.12);
+    }
+
+    .btn-question:disabled { opacity: 0.5; cursor: default; }
+    .btn-question:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    .question-confirm {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 15px;
+      color: var(--muted);
+      display: none;
+      margin-top: 4px;
+    }
+
+    .question-confirm.visible { display: block; }
+
+    .question-offline p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 15px;
+      color: var(--faint);
+    }
+
+    @media (max-width: 640px) { .question-section { padding: 44px 20px; } }
 
     /* ── WELCOME BANNER ────────────────────────────────────── */
     .welcome-bar {
@@ -734,10 +1487,7 @@
       color: var(--muted);
     }
 
-    .footer-name strong {
-      font-style: normal;
-      color: var(--brass);
-    }
+    .footer-name strong { font-style: normal; color: var(--brass); }
 
     .footer-detail {
       font-family: var(--sans);
@@ -746,136 +1496,33 @@
       letter-spacing: 0.06em;
     }
 
-    /* ── CATEGORY FILTERS ──────────────────────────────────── */
-    .filter-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 20px;
-    }
-
-    .filter-btn {
-      font-family: var(--sans);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      background: transparent;
+    /* ── TOAST ─────────────────────────────────────────────── */
+    #toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--surface2);
       border: 1px solid var(--rule);
       border-radius: 2px;
-      padding: 7px 14px;
-      cursor: pointer;
-      transition: color 0.15s, border-color 0.15s, background 0.15s;
-    }
-
-    .filter-btn:hover {
-      color: var(--cream);
-      border-color: var(--faint);
-    }
-
-    .filter-btn.active {
-      color: #1B160E;
-      background: linear-gradient(135deg, var(--gold), var(--brass));
-      border-color: transparent;
-    }
-
-    .filter-btn:focus-visible {
-      outline: 2px solid var(--gold);
-      outline-offset: 2px;
-    }
-
-    .filter-label {
+      padding: 12px 24px;
       font-family: var(--sans);
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.10em;
       text-transform: uppercase;
-      color: var(--faint);
-      margin-top: 20px;
-      margin-bottom: 8px;
-      display: block;
-    }
-
-    /* ── DISCUSSION SECTION ─────────────────────────────────── */
-    .discussion-section {
-      background: var(--surface);
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      padding: 64px 40px;
-    }
-
-    .discussion-inner {
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
-    .discussion-head {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      margin-bottom: 36px;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .discussion-head-lhs .label { display: block; margin-bottom: 8px; }
-
-    .discussion-head-lhs h2 {
-      font-family: var(--serif);
-      font-weight: 700;
-      font-size: clamp(22px, 3.5vw, 30px);
-      line-height: 1.2;
-      color: var(--cream);
-    }
-
-    .discussion-note {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 14px;
-      color: var(--muted);
-      max-width: 200px;
-      text-align: right;
-      line-height: 1.4;
-    }
-
-    .discussion-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .discussion-item {
-      display: grid;
-      grid-template-columns: 36px 1fr;
-      gap: 0 20px;
-      padding: 22px 0;
-      border-bottom: 1px solid var(--rule);
-      align-items: baseline;
-    }
-
-    .discussion-item:first-child { padding-top: 0; }
-    .discussion-item:last-child  { border-bottom: none; padding-bottom: 0; }
-
-    .dq-num {
-      font-family: var(--serif);
-      font-weight: 700;
-      font-size: 13px;
       color: var(--brass);
-      font-variant-numeric: tabular-nums;
-      padding-top: 3px;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), opacity 0.3s;
+      opacity: 0;
+      white-space: nowrap;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
     }
 
-    .dq-text {
-      font-family: var(--serif);
-      font-size: clamp(16px, 2.2vw, 19px);
-      line-height: 1.65;
-      color: var(--cream);
-    }
-
-    @media (max-width: 640px) {
-      .discussion-section { padding: 48px 20px; }
-      .discussion-note    { display: none; }
+    #toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
     }
 
     /* ── RESPONSIVE ────────────────────────────────────────── */
@@ -885,6 +1532,9 @@
       .hero-rule-row     { padding: 18px 20px 0; }
       .countdown-section { padding: 32px 20px; flex-direction: column; }
       .countdown-inner   { flex-direction: column; gap: 20px; }
+      .commit-section    { padding: 28px 20px; }
+      .commit-inner      { flex-direction: column; align-items: flex-start; }
+      .commit-rhs        { align-items: flex-start; }
       .content-area      { padding: 0 20px; }
       .group-body        { grid-template-columns: 1fr; gap: 32px; }
       .welcome-bar       { padding: 40px 20px; }
@@ -951,6 +1601,25 @@
     </div>
   </div>
 
+  <!-- ── COMMITMENT CARD ── -->
+  <section class="commit-section" aria-label="Commitment to Attend">
+    <div class="commit-inner">
+      <div class="commit-lhs">
+        <span class="label">This Thursday</span>
+        <p class="commit-headline">Will you be there?</p>
+        <p class="commit-sub">One tap. Let the group know you're coming.</p>
+      </div>
+      <div class="commit-rhs">
+        <button class="btn-commit" id="btn-commit" onclick="handleCommit()">✦ I'll Be There</button>
+        <span class="commit-confirmed" id="commit-confirmed">You're in — see you Thursday</span>
+        <div class="commit-count-row" id="commit-count-row" style="display:none">
+          <span class="commit-dot"></span>
+          <span class="commit-tally" id="commit-tally">Loading…</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── VERSE DRAWER ── -->
   <section class="verse-section" aria-label="Scripture on Fatherhood">
     <div class="verse-section-inner">
@@ -961,6 +1630,13 @@
         </div>
       </div>
 
+      <!-- Verse of the Week ribbon -->
+      <div class="votw-ribbon" id="votw-ribbon">
+        <div class="votw-label">Verse of the Week</div>
+        <p class="votw-text" id="votw-text"></p>
+        <div class="votw-ref" id="votw-ref"></div>
+      </div>
+
       <div class="verse-book">
         <!-- idle state -->
         <div class="verse-idle" id="verse-idle">
@@ -968,7 +1644,7 @@
           <p class="idle-text">Draw a verse on fatherhood — for reflection, for the group, or for the road ahead.</p>
         </div>
 
-        <!-- verse content (hidden until drawn) -->
+        <!-- verse content -->
         <div class="verse-content" id="verse-content">
           <div class="verse-tag" id="verse-tag">Fatherhood</div>
           <p class="verse-text" id="verse-text"></p>
@@ -981,6 +1657,13 @@
             <div class="verse-question-label">Discuss</div>
             <p class="verse-question-text" id="verse-question"></p>
           </div>
+
+          <!-- Reflection Journal -->
+          <div class="verse-journal" id="verse-journal">
+            <span class="verse-journal-label">My Reflection — saved privately on this device</span>
+            <textarea id="journal-area" placeholder="Write a thought, a prayer, a conviction…" aria-label="Personal reflection journal"></textarea>
+            <div class="journal-saved-note" id="journal-saved-note"></div>
+          </div>
         </div>
       </div>
 
@@ -988,6 +1671,9 @@
         <button class="btn-draw" id="btn-draw" onclick="drawVerse()">
           <span class="btn-icon">✦</span>
           <span id="btn-label">Draw a Verse</span>
+        </button>
+        <button class="btn-share" id="btn-share" onclick="shareCurrentVerse()" aria-label="Copy verse to clipboard">
+          ⬆ Share
         </button>
         <span class="verse-counter" id="verse-counter" hidden></span>
       </div>
@@ -1003,6 +1689,23 @@
         <button class="filter-btn" onclick="setFilter(this, 'Faithfulness')">Faithfulness</button>
         <button class="filter-btn" onclick="setFilter(this, 'Discipline')">Discipline</button>
         <button class="filter-btn" onclick="setFilter(this, 'Identity')">Identity</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WEEKLY CHALLENGE ── -->
+  <section class="challenge-section" aria-label="Weekly Challenge">
+    <div class="challenge-inner">
+      <div class="challenge-head">
+        <div>
+          <span class="label">Challenge</span>
+          <h2>This Week's Assignment</h2>
+        </div>
+        <span class="challenge-week-badge" id="challenge-week-badge">Week —</span>
+      </div>
+      <div class="challenge-card">
+        <div class="challenge-action-name" id="challenge-action-name">Loading…</div>
+        <p class="challenge-desc" id="challenge-desc"></p>
       </div>
     </div>
   </section>
@@ -1043,24 +1746,39 @@
     </div>
   </section>
 
+  <!-- ── ICEBREAKER SPINNER ── -->
+  <section class="icebreaker-section" aria-label="Icebreaker Question Spinner">
+    <div class="icebreaker-inner">
+      <div class="icebreaker-head">
+        <span class="label">Opening Round</span>
+        <h2>Icebreaker Spinner</h2>
+      </div>
+      <div class="icebreaker-stage">
+        <p id="ib-idle">Press Spin to get tonight's opening question.</p>
+        <p id="ib-text" aria-live="polite"></p>
+      </div>
+      <div class="icebreaker-actions">
+        <button class="btn-spin" id="btn-spin" onclick="spinIcebreaker()">
+          <span>⟳</span> Spin
+        </button>
+        <span class="ib-hint" id="ib-hint">Spin again to get a different question</span>
+      </div>
+    </div>
+  </section>
+
   <!-- ── MAIN ── -->
   <main class="content-area">
-
     <div class="group-section">
       <div class="group-section-head">
         <span class="label">The Group</span>
         <h2>Nobody Hands You a Manual</h2>
       </div>
 
-      <!-- description full-width -->
       <div class="group-desc">
         <p>Nobody hands you a manual when you find out you're going to be a father. When your turn comes, you may be carrying questions, and sometimes fear, and in some cases no where to take them. In this group we will equip fathers in all stages of fatherhood with the understanding of who God made them to be for their families.</p>
       </div>
 
-      <!-- two-column body -->
       <div class="group-body">
-
-        <!-- left col: event details -->
         <div>
           <span class="group-col-label">When &amp; Where</span>
           <table class="detail-table">
@@ -1083,7 +1801,6 @@
           </table>
         </div>
 
-        <!-- right col: purpose + info chips -->
         <div>
           <span class="group-col-label">Purpose</span>
           <div class="purpose-list" style="margin-bottom: 32px;">
@@ -1112,11 +1829,64 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
-
   </main>
+
+  <!-- ── PRAYER WALL ── -->
+  <section class="prayer-section" aria-label="Prayer Wall">
+    <div class="prayer-inner">
+      <div class="prayer-head">
+        <span class="label">Community</span>
+        <h2>Prayer Wall</h2>
+        <p>Share a prayer request with the group. Every man here is praying for you.</p>
+      </div>
+
+      <!-- Form — shown when db is available -->
+      <div id="prayer-form-wrap">
+        <form class="prayer-form" id="prayer-form" onsubmit="submitPrayer(event)">
+          <div class="prayer-form-row">
+            <input class="prayer-field" id="prayer-name" type="text" placeholder="Your name (optional)" maxlength="40" autocomplete="off" />
+            <div></div>
+          </div>
+          <textarea class="prayer-field" id="prayer-text" placeholder="Share a prayer request…" maxlength="400" required></textarea>
+          <button class="btn-pray" type="submit" id="btn-pray">✦ Add to Wall</button>
+        </form>
+      </div>
+
+      <!-- Prayer wall list -->
+      <div id="prayer-list-wrap">
+        <div class="prayer-loading" id="prayer-loading">Connecting to prayer wall…</div>
+        <div class="prayer-wall-list" id="prayer-wall-list" style="display:none"></div>
+        <div class="prayer-offline" id="prayer-offline" style="display:none">
+          <p>Prayer wall is connecting. Come back in a moment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── QUESTION BOX ── -->
+  <section class="question-section" aria-label="Anonymous Question Box">
+    <div class="question-inner">
+      <div class="question-head">
+        <span class="label">Ask Anything</span>
+        <h2>Anonymous Question Box</h2>
+        <p>Got a question you're not sure how to ask out loud? Send it anonymously. The host will bring it to the group.</p>
+      </div>
+
+      <div id="question-form-wrap">
+        <form class="question-form" id="question-form" onsubmit="submitQuestion(event)">
+          <textarea class="question-field" id="question-text" placeholder="Ask your question here — it's anonymous…" maxlength="600" required></textarea>
+          <button class="btn-question" type="submit" id="btn-question">→ Submit Anonymously</button>
+        </form>
+        <p class="question-confirm" id="question-confirm">Your question was received. Thank you for trusting the group with it.</p>
+      </div>
+
+      <div class="question-offline" id="question-offline" style="display:none">
+        <p>Question box is unavailable right now. Bring it up at the meeting — every question is welcome.</p>
+      </div>
+    </div>
+  </section>
 
   <!-- ── WELCOME ── -->
   <div class="welcome-bar">
@@ -1130,32 +1900,41 @@
     <div class="footer-detail">The Fathers Charge &nbsp;·&nbsp; Every Thursday starting Sep 17, 2026 &nbsp;·&nbsp; Spring Hill, FL 34609</div>
   </footer>
 
+  <!-- Toast -->
+  <div id="toast" role="status" aria-live="polite"></div>
+
   <script>
+    // ── Toast ────────────────────────────────────────────────
+    let _toastTimer = null;
+    function showToast(msg, duration) {
+      duration = duration || 2400;
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(_toastTimer);
+      _toastTimer = setTimeout(() => t.classList.remove('show'), duration);
+    }
+
     // ── Fluid-fill wordmark ──────────────────────────────────
-    // Scale FATHERS to fill the content width
     function fitWordmark() {
       const container = document.querySelector('.hero-wordmark');
       if (!container) return;
       const W = container.clientWidth;
-
       ['wm-fathers', 'wm-charge'].forEach(id => {
         const el = document.getElementById(id);
         if (!el) return;
-        // reset to natural size to measure natural width
         el.style.fontSize = '';
         const natural = parseFloat(getComputedStyle(el).fontSize);
         const textW   = el.scrollWidth;
         if (textW === 0) return;
         const scale = W / textW;
-        el.style.fontSize = (natural * scale * 0.78) + 'px'; // 0.78 = ~22% smaller than full-fill
+        el.style.fontSize = (natural * scale * 0.78) + 'px';
       });
     }
-
     fitWordmark();
     window.addEventListener('resize', fitWordmark);
 
-    // ── Dynamic Countdown — targets the next Thursday 7 pm ET on or after the series start ───
-    // First meeting: Thu Sep 17, 2026. Sep 3 and Sep 10 are skipped (no meetings).
+    // ── Dynamic Countdown ────────────────────────────────────
     const SERIES_START = new Date('2026-09-17T19:00:00-04:00');
 
     function nextThursdayAt7pmET() {
@@ -1165,9 +1944,7 @@
         const probe = new Date(now.getTime() + d * 864e5);
         const wd = new Intl.DateTimeFormat('en-US', {weekday:'short', timeZone:nyTZ}).format(probe);
         if (wd !== 'Thu') continue;
-        // YYYY-MM-DD in ET (en-CA gives ISO format)
         const ymd = new Intl.DateTimeFormat('en-CA', {timeZone:nyTZ}).format(probe);
-        // Find the ET offset at noon UTC on this date
         const noon = new Date(ymd + 'T12:00:00Z');
         const parts = new Intl.DateTimeFormat('en-US', {
           timeZone:nyTZ, year:'numeric', month:'2-digit', day:'2-digit',
@@ -1175,11 +1952,9 @@
         }).formatToParts(noon);
         const get = t => +parts.find(p => p.type === t).value;
         const etAsIfUTC = Date.UTC(get('year'), get('month')-1, get('day'), get('hour'), get('minute'), get('second'));
-        const etOffset = etAsIfUTC - noon.getTime(); // e.g. -14400000 for EDT (UTC-4)
-        // 7 pm ET = midnight UTC of that date + 19 h, minus the offset
+        const etOffset  = etAsIfUTC - noon.getTime();
         const midnightZ = new Date(ymd + 'T00:00:00Z').getTime();
-        const target = new Date(midnightZ + 19 * 3600000 - etOffset);
-        // Only return if it's in the future AND on or after the series start date
+        const target    = new Date(midnightZ + 19 * 3600000 - etOffset);
         if (target > now && target >= SERIES_START) return target;
       }
       return null;
@@ -1190,20 +1965,15 @@
       ? NEXT_MEETING.getTime()
       : new Date('2026-09-17T19:00:00-04:00').getTime();
 
-    // Update UI to show the dynamic date
     (function updateDateLabels() {
       if (!NEXT_MEETING) return;
       const nyTZ = 'America/New_York';
-      const longDate = new Intl.DateTimeFormat('en-US', {
-        month:'long', day:'numeric', year:'numeric', timeZone:nyTZ
-      }).format(NEXT_MEETING);
-      const shortDate = new Intl.DateTimeFormat('en-US', {
-        month:'short', day:'numeric', year:'numeric', timeZone:nyTZ
-      }).format(NEXT_MEETING);
-      const beginsEl = document.querySelector('.begins');
-      if (beginsEl) beginsEl.textContent = longDate;
+      const longDate  = new Intl.DateTimeFormat('en-US', {month:'long',  day:'numeric', year:'numeric', timeZone:nyTZ}).format(NEXT_MEETING);
+      const shortDate = new Intl.DateTimeFormat('en-US', {month:'short', day:'numeric', year:'numeric', timeZone:nyTZ}).format(NEXT_MEETING);
+      const beginsEl   = document.querySelector('.begins');
+      if (beginsEl)   beginsEl.textContent = longDate;
       const cdLabelEl = document.querySelector('.countdown-lhs .label');
-      if (cdLabelEl) cdLabelEl.textContent = 'Next Meeting In';
+      if (cdLabelEl)  cdLabelEl.textContent = 'Next Meeting In';
       const heroDateEl = document.querySelector('.hero-date-stamp');
       if (heroDateEl) heroDateEl.innerHTML =
         'Every Thursday &nbsp;·&nbsp; Next: <em>' + shortDate + '</em> &nbsp;·&nbsp; 7&thinsp;pm – 9&thinsp;pm';
@@ -1224,11 +1994,18 @@
       document.getElementById('cd-mins').textContent  = pad(Math.floor(diff % 3600000  / 60000));
       document.getElementById('cd-secs').textContent  = pad(Math.floor(diff % 60000    / 1000));
     }
-
     tick();
     setInterval(tick, 1000);
 
-    // ── Verse Drawer ─────────────────────────────────────────
+    // ── Week Key (anchored to next Thursday date) ────────────
+    function getWeekKey() {
+      // Key to the nearest Thursday (the meeting anchor)
+      const d = new Date(NEXT_MEETING || SERIES_START);
+      return d.toISOString().slice(0, 10); // YYYY-MM-DD
+    }
+    const WEEK_KEY = getWeekKey();
+
+    // ── Verse Data ───────────────────────────────────────────
     const VERSES = [
       {
         text: "As a father has compassion on his children, so the LORD has compassion on those who fear him.",
@@ -1406,9 +2183,19 @@
       }
     ];
 
-    let activeFilter = null;  // null = All
+    // ── Verse of the Week ────────────────────────────────────
+    (function initVerseOfWeek() {
+      const weekNum  = Math.floor(Date.now() / (7 * 24 * 3600000));
+      const votw     = VERSES[weekNum % VERSES.length];
+      document.getElementById('votw-text').textContent = votw.text;
+      document.getElementById('votw-ref').textContent  = '— ' + votw.ref;
+    })();
+
+    // ── Verse Drawer ─────────────────────────────────────────
+    let activeFilter = null;
     let remaining    = [];
     let drawCount    = 0;
+    let currentVerse = null;
 
     function shuffle(arr) {
       const a = [...arr];
@@ -1426,57 +2213,426 @@
 
     function setFilter(btn, category) {
       activeFilter = category;
-      remaining    = [];   // reset deck on filter change
+      remaining    = [];
       drawCount    = 0;
-
-      // update button states
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-
-      // reset counter label
       const counter = document.getElementById('verse-counter');
       counter.hidden = true;
       document.getElementById('btn-label').textContent = 'Draw a Verse';
-
-      // hide current verse, show idle
+      document.getElementById('btn-share').classList.remove('visible');
       const content = document.getElementById('verse-content');
       const idle    = document.getElementById('verse-idle');
       content.classList.remove('is-visible');
       content.style.display = 'none';
       idle.style.display = '';
+      currentVerse = null;
     }
+
+    // Reflection Journal (localStorage)
+    const journal = {
+      key:  function(ref) { return 'fc-journal-' + ref.replace(/[^a-z0-9]/gi, '-'); },
+      get:  function(ref) { try { return localStorage.getItem(this.key(ref)) || ''; } catch(e) { return ''; } },
+      save: function(ref, text) { try { localStorage.setItem(this.key(ref), text); } catch(e) {} }
+    };
+
+    let _journalSaveTimer = null;
+    function onJournalInput() {
+      const area = document.getElementById('journal-area');
+      const note = document.getElementById('journal-saved-note');
+      if (!currentVerse) return;
+      clearTimeout(_journalSaveTimer);
+      _journalSaveTimer = setTimeout(function() {
+        journal.save(currentVerse.ref, area.value);
+        note.textContent = 'Saved';
+        setTimeout(function() { note.textContent = ''; }, 1800);
+      }, 800);
+    }
+
+    document.getElementById('journal-area').addEventListener('input', onJournalInput);
 
     function drawVerse() {
       const pool = filteredPool();
       if (pool.length === 0) return;
-
       if (remaining.length === 0) remaining = shuffle(pool);
       const verse = remaining.pop();
       drawCount++;
+      currentVerse = verse;
 
       const idle    = document.getElementById('verse-idle');
       const content = document.getElementById('verse-content');
 
       idle.style.display = 'none';
       content.classList.remove('is-visible');
-      void content.offsetWidth; // reflow so animation re-fires
+      void content.offsetWidth;
 
       document.getElementById('verse-text').textContent     = verse.text;
       document.getElementById('verse-ref').textContent      = verse.ref;
       document.getElementById('verse-question').textContent = verse.question;
+      document.getElementById('verse-tag').textContent      = verse.tags[0];
 
-      // update the category tag badge
-      const tag = verse.tags[0];
-      document.getElementById('verse-tag').textContent = tag;
+      // Load saved reflection
+      const area = document.getElementById('journal-area');
+      area.value = journal.get(verse.ref);
+      document.getElementById('journal-saved-note').textContent = '';
 
       content.style.display = 'block';
       content.classList.add('is-visible');
 
       document.getElementById('btn-label').textContent = 'Draw Another';
+      document.getElementById('btn-share').classList.add('visible');
       const counter = document.getElementById('verse-counter');
       counter.hidden = false;
       counter.textContent = drawCount + ' of ' + pool.length + (activeFilter ? ' in ' + activeFilter : '') + ' drawn';
     }
+
+    // Share a Verse (clipboard)
+    function shareCurrentVerse() {
+      if (!currentVerse) return;
+      const text = '“' + currentVerse.text + '” — ' + currentVerse.ref + ' #TheFathersCharge';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() {
+          showToast('Verse copied to clipboard');
+        }).catch(function() {
+          fallbackCopy(text);
+        });
+      } else {
+        fallbackCopy(text);
+      }
+    }
+
+    function fallbackCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try {
+        document.execCommand('copy');
+        showToast('Verse copied to clipboard');
+      } catch(e) {
+        showToast('Select and copy the verse manually');
+      }
+      document.body.removeChild(ta);
+    }
+
+    // ── Weekly Challenge ─────────────────────────────────────
+    const CHALLENGES = [
+      {
+        action: "One-on-One Conversation",
+        desc: "This week, have an uninterrupted one-on-one conversation with each of your children — no phones, no agenda. Just listen to whatever they want to talk about."
+      },
+      {
+        action: "Write It Down",
+        desc: "Write one specific thing you love or admire about each of your children on a note and leave it somewhere they'll find it — lunchbox, pillow, mirror."
+      },
+      {
+        action: "Tell Your Story",
+        desc: "Share with your children one honest story of a time God helped you through something genuinely hard. Don't clean it up — let them hear the real version."
+      },
+      {
+        action: "Pray Out Loud",
+        desc: "Pray out loud with your children at least three times this week. It doesn't have to be long. One sentence counts. Let them hear your voice talk to God."
+      },
+      {
+        action: "Make Something Together",
+        desc: "Cook a meal, fix something, or build something with at least one of your children. Let them take the lead on at least part of it. Stay patient."
+      },
+      {
+        action: "Ask the Hard Question",
+        desc: "Ask your child: 'What do you wish I knew about you?' Then only listen. Don't fix, don't explain, don't defend — just take it in."
+      },
+      {
+        action: "Own a Mistake",
+        desc: "Apologize to your child for something this week — a real apology, without excuses. Model what it looks like to be a man who owns it."
+      },
+      {
+        action: "Move Together",
+        desc: "Do something physical with your child this week: a walk, a bike ride, a game, a workout. Get off the couch and get moving together."
+      },
+      {
+        action: "Read the Word Together",
+        desc: "Read one passage from Proverbs together each morning this week. Two minutes before school counts. The habit is the point."
+      },
+      {
+        action: "Name What You See",
+        desc: "Tell each of your children one specific strength, gift, or quality you see in them. Be specific — not 'you're great,' but 'I see how you protect your little brother.'"
+      },
+      {
+        action: "Protect Your Evening",
+        desc: "Guard at least three evenings this week for your family. No late work, no overtime. Be home, be present, be fully there."
+      },
+      {
+        action: "Learn Their World",
+        desc: "Ask your child to show you something they love right now — a game, a show, a song, a hobby. Engage genuinely. Let them be the expert for once."
+      }
+    ];
+
+    (function initChallenge() {
+      const weekNum   = Math.floor(Date.now() / (7 * 24 * 3600000));
+      const challenge = CHALLENGES[weekNum % CHALLENGES.length];
+      // Week number relative to series start for display
+      const seriesWeek = Math.max(1, Math.ceil((Date.now() - SERIES_START.getTime()) / (7 * 24 * 3600000)));
+      document.getElementById('challenge-week-badge').textContent  = 'Week ' + seriesWeek;
+      document.getElementById('challenge-action-name').textContent = challenge.action;
+      document.getElementById('challenge-desc').textContent        = challenge.desc;
+    })();
+
+    // ── Icebreaker Spinner ───────────────────────────────────
+    const ICEBREAKERS = [
+      "What's one thing your dad said that stuck with you — for better or worse?",
+      "What's the most surprising thing about being a father that nobody warned you about?",
+      "What's something your kid has genuinely taught you?",
+      "What did your dad do on weekends when you were growing up?",
+      "What's the last thing that made you genuinely laugh with your kids?",
+      "What's a family tradition you hope never changes?",
+      "What's one thing you want your children to say about you at your funeral?",
+      "Share a fathering win from this week — big or small, it counts.",
+      "When did you feel most like a good dad this month?",
+      "What's something you did as a kid that you now do with your own kids?",
+      "What does 'providing' mean to you beyond a paycheck?",
+      "Name one fear you carry as a father and one thing you're doing about it.",
+      "What's the best piece of fathering advice you've ever received?",
+      "Do you know your child's love language — and are you actually speaking it?",
+      "What does a great Thursday night look like to you — what would make you leave fired up?"
+    ];
+
+    let ibIndex    = Math.floor(Math.random() * ICEBREAKERS.length);
+    let ibStarted  = false;
+
+    function spinIcebreaker() {
+      const btn     = document.getElementById('btn-spin');
+      const ibText  = document.getElementById('ib-text');
+      const ibIdle  = document.getElementById('ib-idle');
+      const ibHint  = document.getElementById('ib-hint');
+
+      btn.disabled = true;
+      ibIdle.style.display = 'none';
+      ibText.style.display = 'block';
+      ibText.classList.remove('landed');
+      ibText.classList.add('spinning');
+      ibHint.style.display = 'none';
+
+      let steps    = 10 + Math.floor(Math.random() * 8);
+      let interval = 70;
+
+      function step() {
+        ibIndex  = (ibIndex + 1) % ICEBREAKERS.length;
+        ibText.textContent = ICEBREAKERS[ibIndex];
+        steps--;
+        if (steps > 0) {
+          interval = Math.min(interval * 1.15, 520);
+          setTimeout(step, interval);
+        } else {
+          ibText.classList.remove('spinning');
+          ibText.classList.add('landed');
+          btn.disabled = false;
+          ibHint.style.display = '';
+          ibStarted = true;
+        }
+      }
+
+      step();
+    }
+
+    // ── DB Initialization (shared social features) ───────────
+    let _db = null;
+
+    async function initDb() {
+      if (typeof window.claude === 'undefined' || !window.claude.use) return;
+      try {
+        _db = await window.claude.use('db');
+      } catch(e) {
+        _db = null;
+      }
+      if (_db) {
+        initCommitmentCard();
+        initPrayerWall();
+        initQuestionBox();
+      } else {
+        showOfflineStates();
+      }
+    }
+
+    function showOfflineStates() {
+      // Commitment card: hide count row (button still works as UI, just won't persist)
+      document.getElementById('commit-count-row').style.display = 'none';
+      // Prayer wall offline
+      document.getElementById('prayer-loading').style.display  = 'none';
+      document.getElementById('prayer-offline').style.display  = 'block';
+      // Question box offline
+      document.getElementById('question-form-wrap').style.display = 'none';
+      document.getElementById('question-offline').style.display   = 'block';
+    }
+
+    // ── Commitment Card ──────────────────────────────────────
+    let _committed = false;
+
+    function handleCommit() {
+      if (_committed) return;
+      _committed = true;
+      const btn = document.getElementById('btn-commit');
+      btn.disabled = true;
+      document.getElementById('commit-confirmed').classList.add('visible');
+
+      if (_db) {
+        // Store commitment as a doc keyed to anonymous session
+        const sessionKey = getSessionId();
+        _db.doc('commitments/' + WEEK_KEY + '-' + sessionKey).set({ts: Date.now(), week: WEEK_KEY})
+          .catch(function() {});
+      }
+    }
+
+    function initCommitmentCard() {
+      const countRow = document.getElementById('commit-count-row');
+      const tally    = document.getElementById('commit-tally');
+      countRow.style.display = 'flex';
+
+      // Listen for commitment count
+      try {
+        _db.collection('commitments').where('week', 'eq', WEEK_KEY).onSnapshot(function(snap) {
+          const n = snap.size || 0;
+          tally.innerHTML = '<strong>' + n + '</strong> ' + (n === 1 ? 'man' : 'men') + ' committed this week';
+        }, function() {
+          countRow.style.display = 'none';
+        });
+      } catch(e) {
+        countRow.style.display = 'none';
+      }
+    }
+
+    // ── Prayer Wall ──────────────────────────────────────────
+    function initPrayerWall() {
+      const loading  = document.getElementById('prayer-loading');
+      const listEl   = document.getElementById('prayer-wall-list');
+      const offline  = document.getElementById('prayer-offline');
+
+      try {
+        _db.collection('prayers').orderBy('ts', 'desc').limit(20).onSnapshot(function(snap) {
+          loading.style.display = 'none';
+          listEl.style.display  = 'block';
+          if (!snap.docs || snap.docs.length === 0) {
+            listEl.innerHTML = '<p class="prayer-empty">Be the first to share a prayer request.</p>';
+            return;
+          }
+          listEl.innerHTML = snap.docs.map(function(doc) {
+            const d    = doc.data || {};
+            const name = d.name || 'Anonymous';
+            const text = d.text || '';
+            const age  = timeAgo(d.ts);
+            return '<div class="prayer-card">' +
+              '<div class="prayer-meta"><span class="prayer-name">' + esc(name) + '</span><span class="prayer-time">' + age + '</span></div>' +
+              '<p class="prayer-text">' + esc(text) + '</p>' +
+              '</div>';
+          }).join('');
+        }, function() {
+          loading.style.display = 'none';
+          offline.style.display = 'block';
+        });
+      } catch(e) {
+        loading.style.display = 'none';
+        offline.style.display = 'block';
+      }
+    }
+
+    function submitPrayer(event) {
+      event.preventDefault();
+      if (!_db) return;
+      const name    = document.getElementById('prayer-name').value.trim();
+      const text    = document.getElementById('prayer-text').value.trim();
+      if (!text) return;
+      const btn = document.getElementById('btn-pray');
+      btn.disabled = true;
+      btn.textContent = 'Posting…';
+      _db.collection('prayers').add({
+        name: name || 'Anonymous',
+        text: text,
+        ts:   Date.now()
+      }).then(function() {
+        document.getElementById('prayer-form').reset();
+        btn.disabled = false;
+        btn.textContent = '✦ Add to Wall';
+        showToast('Prayer added to the wall');
+      }).catch(function() {
+        btn.disabled = false;
+        btn.textContent = '✦ Add to Wall';
+        showToast('Could not post — try again');
+      });
+    }
+
+    // ── Anonymous Question Box ───────────────────────────────
+    function initQuestionBox() {
+      // Form is already visible in HTML; just confirm db is live
+    }
+
+    function submitQuestion(event) {
+      event.preventDefault();
+      if (!_db) {
+        document.getElementById('question-form-wrap').style.display = 'none';
+        document.getElementById('question-offline').style.display   = 'block';
+        return;
+      }
+      const text = document.getElementById('question-text').value.trim();
+      if (!text) return;
+      const btn = document.getElementById('btn-question');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      _db.collection('questions').add({
+        text:     text,
+        ts:       Date.now(),
+        answered: false,
+        week:     WEEK_KEY
+      }).then(function() {
+        document.getElementById('question-form').reset();
+        document.getElementById('question-confirm').classList.add('visible');
+        btn.disabled = false;
+        btn.textContent = '→ Submit Anonymously';
+        showToast('Question submitted — thank you');
+      }).catch(function() {
+        btn.disabled = false;
+        btn.textContent = '→ Submit Anonymously';
+        showToast('Could not send — try again');
+      });
+    }
+
+    // ── Helpers ──────────────────────────────────────────────
+    function esc(str) {
+      return String(str)
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;');
+    }
+
+    function timeAgo(ts) {
+      if (!ts) return '';
+      const diff = Date.now() - ts;
+      const m = Math.floor(diff / 60000);
+      if (m < 2)  return 'just now';
+      if (m < 60) return m + 'm ago';
+      const h = Math.floor(m / 60);
+      if (h < 24) return h + 'h ago';
+      const d = Math.floor(h / 24);
+      return d + 'd ago';
+    }
+
+    function getSessionId() {
+      try {
+        let id = sessionStorage.getItem('fc-sid');
+        if (!id) {
+          id = Math.random().toString(36).slice(2, 10);
+          sessionStorage.setItem('fc-sid', id);
+        }
+        return id;
+      } catch(e) {
+        return Math.random().toString(36).slice(2, 10);
+      }
+    }
+
+    // Start db init
+    initDb();
   </script>
 </body>
 </html>
