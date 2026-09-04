@@ -1960,16 +1960,17 @@
       return null;
     }
 
-    const NEXT_MEETING = nextThursdayAt7pmET();
-    const TARGET = NEXT_MEETING
+    let NEXT_MEETING = nextThursdayAt7pmET();
+    let TARGET = NEXT_MEETING
       ? NEXT_MEETING.getTime()
       : new Date('2026-09-17T19:00:00-04:00').getTime();
 
-    (function updateDateLabels() {
-      if (!NEXT_MEETING) return;
+    function updateDateLabels() {
+      const dateToFormat = NEXT_MEETING || SERIES_START;
+      if (!dateToFormat) return;
       const nyTZ = 'America/New_York';
-      const longDate  = new Intl.DateTimeFormat('en-US', {month:'long',  day:'numeric', year:'numeric', timeZone:nyTZ}).format(NEXT_MEETING);
-      const shortDate = new Intl.DateTimeFormat('en-US', {month:'short', day:'numeric', year:'numeric', timeZone:nyTZ}).format(NEXT_MEETING);
+      const longDate  = new Intl.DateTimeFormat('en-US', {month:'long',  day:'numeric', year:'numeric', timeZone:nyTZ}).format(dateToFormat);
+      const shortDate = new Intl.DateTimeFormat('en-US', {month:'short', day:'numeric', year:'numeric', timeZone:nyTZ}).format(dateToFormat);
       const beginsEl   = document.querySelector('.begins');
       if (beginsEl)   beginsEl.textContent = longDate;
       const cdLabelEl = document.querySelector('.countdown-lhs .label');
@@ -1984,7 +1985,8 @@
       const detailDateEl = document.getElementById('detail-next-date');
       if (detailDateEl) detailDateEl.innerHTML =
         'Thursday, ' + shortDate + '<small>Every Thursday · 7 – 9 pm</small>';
-    })();
+    }
+    updateDateLabels();
 
     function pad(n) { return String(n).padStart(2, '0'); }
 
@@ -2013,11 +2015,14 @@
     }
     let WEEK_KEY = getWeekKey();
 
-    // Monitor for week changes — reset commitment card automatically
+    // Monitor for week changes — reset commitment card and dates automatically
     function checkAndResetWeek() {
       const newWeek = getWeekKey();
       if (newWeek !== WEEK_KEY) {
         WEEK_KEY = newWeek;
+        NEXT_MEETING = nextThursdayAt7pmET();
+        TARGET = NEXT_MEETING ? NEXT_MEETING.getTime() : new Date('2026-09-17T19:00:00-04:00').getTime();
+        updateDateLabels();
         _committed = false;
         document.getElementById('btn-commit').disabled = false;
         document.getElementById('commit-confirmed').classList.remove('visible');
