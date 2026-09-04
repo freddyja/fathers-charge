@@ -2007,10 +2007,25 @@
     // ── Week Key (anchored to next Thursday date) ────────────
     function getWeekKey() {
       // Key to the nearest Thursday (the meeting anchor)
-      const d = new Date(NEXT_MEETING || SERIES_START);
+      const nm = nextThursdayAt7pmET();
+      const d = new Date(nm || SERIES_START);
       return d.toISOString().slice(0, 10); // YYYY-MM-DD
     }
-    const WEEK_KEY = getWeekKey();
+    let WEEK_KEY = getWeekKey();
+
+    // Monitor for week changes — reset commitment card automatically
+    function checkAndResetWeek() {
+      const newWeek = getWeekKey();
+      if (newWeek !== WEEK_KEY) {
+        WEEK_KEY = newWeek;
+        _committed = false;
+        document.getElementById('btn-commit').disabled = false;
+        document.getElementById('commit-confirmed').classList.remove('visible');
+        document.getElementById('commit-count-row').style.display = 'none';
+        if (_db) initCommitmentCard();
+      }
+    }
+    setInterval(checkAndResetWeek, 60000); // Check every minute
 
     // ── Verse Data ───────────────────────────────────────────
     const VERSES = [
